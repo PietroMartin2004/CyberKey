@@ -9,7 +9,7 @@ const generateBtn = document.getElementById('generate');
 const clipboardBtn = document.getElementById('clipboard');
 const memorableModeEl = document.getElementById('memorable-mode');
 
-// --- ENGLISH DICTIONARY (NO NAMES, JUST THINGS) ---
+// --- ENGLISH DICTIONARY (MANTIDO INTACTO) ---
 const dicionario = [
     // FRUITS & FOOD
     "Apple", "Banana", "Grape", "Lemon", "Lime", "Mango", "Melon", "Berry", 
@@ -49,12 +49,24 @@ const randomFunc = {
     }
 };
 
-// EVENTO: COPIAR
+// --- EVENTO: COPIAR (AQUI ESTÁ A MUDANÇA PARA SWEETALERT) ---
 clipboardBtn.addEventListener('click', () => {
     const password = resultEl.innerText;
-    if (!password || password === "Sua senha aqui") return;
+    
+    // Verifica se há uma senha válida para copiar
+    if (!password || password === "Sua senha aqui" || password === "Clique em Gerar") return;
+    
     navigator.clipboard.writeText(password);
-    alert('Password copied!'); // Mudei o alerta para inglês também
+    
+    // O SweetAlert2 que você pediu (Configurado com as cores do seu tema Dark)
+    Swal.fire({
+        title: "Sucesso!",
+        text: "Senha copiada para a área de transferência!",
+        icon: "success",
+        background: '#1e293b', // Fundo escuro do card
+        color: '#fff',         // Texto branco
+        confirmButtonColor: '#6366f1' // Botão Roxo
+    });
 });
 
 // EVENTO: GERAR SENHA
@@ -78,7 +90,15 @@ generateBtn.addEventListener('click', () => {
     const hasSymbol = symbolsEl.checked;
 
     if (!hasLower && !hasUpper && !hasNumber && !hasSymbol) {
-        alert("Please select at least one option!");
+        // Também botei o SweetAlert aqui para ficar padronizado, se não quiser pode voltar pro alert()
+        Swal.fire({
+            title: "Atenção!",
+            text: "Selecione pelo menos uma opção!",
+            icon: "warning",
+            background: '#1e293b',
+            color: '#fff',
+            confirmButtonColor: '#6366f1'
+        });
         return;
     }
 

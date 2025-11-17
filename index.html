@@ -95,18 +95,19 @@
 
     <div class="ad-banner"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="./CyberKey/index.js"></script>
+
     <script>
         const slider = document.getElementById('length-slider');
         const numberInput = document.getElementById('length');
         const displaySpan = document.getElementById('length-val');
 
-        // Quando mexe no slider, atualiza o input escondido e o numero na tela
         slider.oninput = function() {
             numberInput.value = this.value;
             displaySpan.textContent = this.value;
         }
-        // Garante sincronia inicial
         numberInput.value = slider.value;
     </script>
 </body>
