@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas PRO</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="ad-banner"></div>
+
+    <div class="main-layout">
+        
+        <aside class="ad-vertical"><br></aside>
+
+        <main class="container">
+            <header>
+                <h2>Gerador de Senhas</h2>
+                <p>Crie segurança instantânea</p>
+            </header>
+            
+            <div class="result-wrapper">
+                <div class="result-box">
+                    <span id="result">Clique em Gerar</span>
+                </div>
+                <button class="btn-copy" id="clipboard" title="Copiar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+
+            <div class="settings">
+                
+                <div class="setting-card highlight-card">
+                    <div class="setting-info">
+                        <label>Modo Memorável</label>
+                        <small>Ex: @Tiger92 (Fácil de lembrar)</small>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="memorable-mode">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="length-control">
+                    <div class="length-header">
+                        <label>Tamanho da Senha</label>
+                        <span id="length-val">12</span>
+                    </div>
+                    <input type="range" id="length-slider" min="4" max="24" value="12">
+                    <input type="number" id="length" min="4" max="24" value="12" style="display:none;"> 
+                </div>
+
+                <div class="options-grid">
+                    <div class="setting-item">
+                        <label class="switch-label">Maiúsculas (A-Z)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="uppercase" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <label class="switch-label">Minúsculas (a-z)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="lowercase" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <label class="switch-label">Números (0-9)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="numbers" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <label class="switch-label">Símbolos (@#$)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="symbols" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-generate" id="generate">GERAR NOVA SENHA</button>
+        </main>
+
+        <aside class="ad-vertical"><br></aside>
+    </div>
+
+    <div class="ad-banner"></div>
+
+    <script src="index.js"></script>
+    <script>
+        const slider = document.getElementById('length-slider');
+        const numberInput = document.getElementById('length');
+        const displaySpan = document.getElementById('length-val');
+
+        // Quando mexe no slider, atualiza o input escondido e o numero na tela
+        slider.oninput = function() {
+            numberInput.value = this.value;
+            displaySpan.textContent = this.value;
+        }
+        // Garante sincronia inicial
+        numberInput.value = slider.value;
+    </script>
+</body>
+</html>
